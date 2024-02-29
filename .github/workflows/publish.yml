@@ -1,0 +1,30 @@
+name: Publish
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Note: You don't need 'id-token' and 'packages' permissions for publishing to npmjs.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org/' # Target npmjs.com registry
+          # Added scope to setup-node to handle the scope's registry
+          scope: '@yazan-ali-01' # Make sure to replace with your actual scope
+          # Using NODE_AUTH_TOKEN which is automatically used by npm commands in setup-node action
+          node-auth-token: ${{ secrets.NPM_TOKEN }}
+      - run: npm install
+      - run: npm run build
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: ./build
+        # No longer need to manually create or modify .npmrc in the workflow
