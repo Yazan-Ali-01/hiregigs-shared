@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "Helpers library for hireGigs app",
   "private": false,
@@ -10,8 +10,8 @@
   },
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm && tsc --outDir build/src && node scripts/build-package.js",
-    "build:cjs": "NODE_ENV=production BABEL_ENV=cjs babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/cjs --source-maps",
-    "build:esm": "NODE_ENV=production BABEL_ENV=esm babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/esm --source-maps"
+    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/cjs --source-maps",
+    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel src --presets=./scripts/babel-preset.js --extensions .ts,.tsx --ignore src/**/*.specs.tsx --out-dir build/esm --source-maps"
   },
   "prettier": {
     "printWidth": 80,
@@ -37,11 +37,7 @@
     }
   },
   "files": [
-    "build/**/*",
-    "!**/*.ts",
-    "!**/*.tsx",
-    "!**/*.test.js",
-    "!**/*.spec.js"
+    "build/**/*"
   ],
   "dependencies": {
     "@elastic/elasticsearch": "^8.12.2",
