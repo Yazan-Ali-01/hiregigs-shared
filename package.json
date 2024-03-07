@@ -1,7 +1,7 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "build/cjs/index.js",
   "description": "Helpers library for hireGigs app",
   "private": false,
   "engines": {
@@ -31,12 +31,12 @@
   },
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "require": "./src/index.js"
+      "import": "./build/esm/index.js",
+      "require": "./build/cjs/index.js"
     },
     "./icons": {
-      "import": "./esm/icons/index.js",
-      "require": "./cjs/icons/index.js"
+      "import": "./build/esm/icons/index.js",
+      "require": "./build/cjs/icons/index.js"
     }
   },
   "types": "./src/index.d.ts",
